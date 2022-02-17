@@ -1,4 +1,4 @@
-package sbb.tests.stepdefinitions;
+package ui.tests.stepdefinitions.sbb;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = "pretty",
         // Where to find the cucumber feature files with scenarios to test
-        features = "src/test/java/sbb/tests/features")
+        features = "src/test/java/sbb/tests/features/sbb")
 public class RunCucumberSBBTest {
 
 }

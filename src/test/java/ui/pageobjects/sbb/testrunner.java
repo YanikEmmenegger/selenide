@@ -24,7 +24,7 @@ public class testrunner {
         String From = "Ittigen";
         String To = "Bern";
         String Time = "15:00";
-        String Date = "20.02.2022";
+        String Date = "29.02.2022";
         String Via = "Bolligen";
         String AnAb = "Abfahrt";
 

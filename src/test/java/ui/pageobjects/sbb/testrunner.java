@@ -11,7 +11,7 @@ public class testrunner {
     public static void main(String[] args) {
         Configuration.reportsFolder = "target/surefire-reports";
         Configuration.timeout = IMPLICIT_WAIT_TIMEOUT;
-        Configuration.browser = "chrome";
+        Configuration.browser = "edge";
 
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (int)size.getWidth();

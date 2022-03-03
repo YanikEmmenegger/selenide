@@ -4,14 +4,14 @@ package ui.pageobjects.sbb;
 import com.codeborne.selenide.webdriver.ChromeDriverFactory;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.tinylog.Logger;
 import ui.pageobjects.constants;
 
 import static ui.pageobjects.constants.*;
 
 
 public class testrunner {
-    public static void main(String[] args) {
-        new constants().setUp(URL_SBB, "chrome");
+    public static void main(String[] args)  {
         //new constants().setUp(URL_SBB);//Without Browser = Chrome
 
         HomePage homePage = new HomePage();
@@ -34,5 +34,10 @@ public class testrunner {
         homePage.switchLocations();
         homePage.changeAnAb(AnAb);
         homePage.searchConnection();
+
+        ConnectionPage ConnPage = new ConnectionPage();
+        Logger.info(ConnPage.getTextTitleDateTime());
+        Logger.info(ConnPage.getTextTitleFrom());
+        Logger.info(ConnPage.getTextTitleTo());
     }
 }

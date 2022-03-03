@@ -29,13 +29,11 @@ public class ConnectionPage {
     public String getTextTitleDateTime() {
         return $(textDateTime).should(appear).getText();
     }
-    public void clickEarlyConnections() throws Exception {
+    public void clickEarlyConnections() {
         $(btnEarlyConnections).should(appear).click();
-        //Thread.sleep(1000);
     }
-    public void clickLaterConnection() throws Exception {
+    public void clickLaterConnection() {
         $(btnLaterConnections).should(appear).click();
-        //Thread.sleep(1000);
     }
     /*
     public ArrayList<SBBConnection> getAllConnections(){

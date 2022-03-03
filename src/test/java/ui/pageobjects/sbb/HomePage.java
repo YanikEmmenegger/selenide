@@ -1,7 +1,6 @@
 package ui.pageobjects.sbb;
 
 
-import org.junit.rules.Timeout;
 import org.openqa.selenium.By;
 
 import java.time.Duration;

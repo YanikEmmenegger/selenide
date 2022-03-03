@@ -8,7 +8,7 @@ import static ui.pageobjects.constants.*;
 
 public class testrunner {
     public static void main(String[] args) {
-        new constants().setUp(URL_SBB, "edge");
+        new constants().setUp(URL_SBB, "chrome");
 
         HomePage homePage = new HomePage();
         String From = "Ittigen";

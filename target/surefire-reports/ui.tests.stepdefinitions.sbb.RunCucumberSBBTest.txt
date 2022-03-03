@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: ui.tests.stepdefinitions.sbb.RunCucumberSBBTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.027 s <<< FAILURE! - in ui.tests.stepdefinitions.sbb.RunCucumberSBBTest
+ui.tests.stepdefinitions.sbb.RunCucumberSBBTest  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalArgumentException: path must exist: C:\Users\E541750\OneDrive - SBB\j\GitHub\src\test\java\sbb\tests\features\sbb
+

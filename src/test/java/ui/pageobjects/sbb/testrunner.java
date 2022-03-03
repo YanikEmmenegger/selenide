@@ -18,7 +18,7 @@ public class testrunner {
         int height = (int)size.getHeight();
         Configuration.browserSize = width+"x"+height;
         Configuration.browserPosition = "0x0";
-        open(SbbUrl);
+        open(URL_SBB);
 
         HomePage homePage = new HomePage();
         String From = "Ittigen";

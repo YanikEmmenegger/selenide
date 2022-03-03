@@ -12,13 +12,13 @@ import static ui.pageobjects.constants.*;
 public class testrunner {
     public static void main(String[] args) {
         new constants().setUp(URL_SBB, "chrome");
-        new constants().setUp(URL_SBB);//Without Browser = Chrome
+        //new constants().setUp(URL_SBB);//Without Browser = Chrome
 
         HomePage homePage = new HomePage();
         String From = "Ittigen";
         String To = "Bern";
         String Time = "15:00";
-        String Date = "29.02.2022";
+        String Date = "29.03.2022";
         String Via = "Bolligen";
         String AnAb = "Abfahrt";
 

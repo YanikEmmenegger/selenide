@@ -16,7 +16,7 @@
             <junit.version>5.8.2</junit.version>
             <cucumber.version>7.2.3</cucumber.version>
             <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-            <selenide.version>6.3.0</selenide.version>
+            <selenide.version>6.3.3</selenide.version>
             <tinylog.version>2.4.1</tinylog.version>
         </properties>
 

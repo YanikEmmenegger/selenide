@@ -1,24 +1,14 @@
 package ui.pageobjects.sbb;
 
-import com.codeborne.selenide.Configuration;
 
-import java.awt.*;
+import ui.pageobjects.constants;
 
-import static com.codeborne.selenide.Selenide.open;
 import static ui.pageobjects.constants.*;
+
 
 public class testrunner {
     public static void main(String[] args) {
-        Configuration.reportsFolder = "target/surefire-reports";
-        Configuration.timeout = IMPLICIT_WAIT_TIMEOUT;
-        Configuration.browser = "edge";
-
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = (int)size.getWidth();
-        int height = (int)size.getHeight();
-        Configuration.browserSize = width+"x"+height;
-        Configuration.browserPosition = "0x0";
-        open(URL_SBB);
+        new constants().setUp(URL_SBB, "edge");
 
         HomePage homePage = new HomePage();
         String From = "Ittigen";

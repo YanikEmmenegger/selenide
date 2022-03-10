@@ -1,12 +1,16 @@
 package ui.pageobjects.sbb;
 
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.tinylog.Logger;
+
+import java.util.ArrayList;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class ConnectionPage {
 
@@ -35,33 +39,34 @@ public class ConnectionPage {
     public void clickLaterConnection() {
         $(btnLaterConnections).should(appear).click();
     }
-    /*
+
+
+
     public ArrayList<SBBConnection> getAllConnections(){
         ArrayList<SBBConnection> connections = new ArrayList<SBBConnection>();
-        for (WebElement connection : allconnections) {
+        for (SelenideElement connection : $$(allconnections)) {
             String richtung = connection.findElement(By.className("mod_timetable_direction_text")).getText();
             String start = connection.findElement(By.cssSelector(".mod_timetable_starttime > span")).getText();
             String end = connection.findElement(By.cssSelector(".mod_timetable_endtime > span")).getText();
             String dauer = connection.findElement(By.cssSelector(".mod_timetable_duration > span")).getText();
             String umsteigen = connection.findElement(By.className("mod_timetable_change_label")).getText();
-            WebElement btnBuyTicket = connection.findElement(By.xpath("//button[@accesskey='1']"));
+            SelenideElement btnBuyTicket = connection.find(By.className("mod_timetable_buy_button_label"));
             String preisWithoutChar = btnBuyTicket.getText().replaceAll("[^\\d.]", "");
-            Logger.info(preisWithoutChar);
             double preis = Double.parseDouble(preisWithoutChar.substring(0, preisWithoutChar.length() - 2));
-            Logger.info(preis);
             SBBConnection ConnObj = new SBBConnection(richtung, start, end, dauer, umsteigen, preis, btnBuyTicket);
             connections.add(ConnObj);
         }
         return connections;
     }
-    public boolean addTicketToCart(String richtung, String start, String end, String dauer) throws Exception{
+    public boolean addTicketToCart(String richtung, String start, String end, String dauer) {
 
         for (SBBConnection connection : getAllConnections()) {
-            Logger.info(connection.getStart());
-            Logger.info(connection.getEnd());
-            Logger.info(connection.getDauer());
-            Logger.info(connection.getTicketPreis());
-            logger.info(connection.getRichtung());
+            Logger.info("\nAbfahrt: "+connection.getStart()+"\nAnkunft:"+
+                    connection.getEnd()+"\nDauer: "+
+                    connection.getDauer()+"\nPreis: "+
+                    connection.getTicketPreis()+"\nRichtung: "+
+                    connection.getRichtung());
+
             if (connection.getRichtung().contains(richtung)
                     &&connection.getStart().contains(start)
                     &&connection.getEnd().contains(end)
@@ -73,5 +78,66 @@ public class ConnectionPage {
             }
         }
         return false;
-    }*/
+    }
+    public boolean addTicketToCart(){
+        SBBConnection connection = getAllConnections().get(0);
+        Logger.info("\nAbfahrt: "+connection.getStart()+"\nAnkunft:"+
+                connection.getEnd()+"\nDauer: "+
+                connection.getDauer()+"\nPreis: "+
+                connection.getTicketPreis()+"\nRichtung: "+
+                connection.getRichtung());
+        connection.btnBuyTicket.click();
+        return true;
+    }
+
+    public class SBBConnection {
+
+        private final String richtung;
+        private final String start;
+        private final String end;
+        private final String dauer;
+        private final String umsteigen;
+        private final double ticketPreis;
+        private final SelenideElement btnBuyTicket;
+
+        public String getRichtung() {
+            return richtung;
+        }
+
+        public double getTicketPreis() {
+            return ticketPreis;
+        }
+
+        public String getStart() {
+            return start;
+        }
+
+        public String getEnd() {
+            return end;
+        }
+
+        public String getDauer() {
+            return dauer;
+        }
+
+        public String getUmsteigen() {
+            return umsteigen;
+        }
+
+        public SelenideElement getBtnBuyTicket() {
+            return btnBuyTicket;
+        }
+
+        public SBBConnection(String richtung, String start, String end, String dauer, String umsteigen, double ticketPreis,
+                             SelenideElement btnBuyTicket) {
+            super();
+            this.richtung = richtung;
+            this.start = start;
+            this.end = end;
+            this.dauer = dauer;
+            this.umsteigen = umsteigen;
+            this.ticketPreis = ticketPreis;
+            this.btnBuyTicket = btnBuyTicket;
+        }
+    }
 }

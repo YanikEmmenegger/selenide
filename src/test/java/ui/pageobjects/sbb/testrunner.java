@@ -11,8 +11,8 @@ import static ui.pageobjects.constants.*;
 
 
 public class testrunner {
-    public static void main(String[] args)  {
-        //new constants().setUp(URL_SBB);//Without Browser = Chrome
+    public static void main(String[] args) throws InterruptedException {
+        new constants().setUp(URL_SBB);//Without Browser = Chrome
 
         HomePage homePage = new HomePage();
         String From = "Ittigen";
@@ -39,5 +39,9 @@ public class testrunner {
         Logger.info(ConnPage.getTextTitleDateTime());
         Logger.info(ConnPage.getTextTitleFrom());
         Logger.info(ConnPage.getTextTitleTo());
+
+        Logger.info(ConnPage.getAllConnections());
+        ConnPage.addTicketToCart();
+        Thread.sleep(20000);
     }
 }

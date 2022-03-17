@@ -2,6 +2,7 @@ package ui.pageobjects.sbb;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
 import org.tinylog.Logger;
 
 import java.util.ArrayList;
@@ -41,6 +42,14 @@ public class ConnectionPage {
     }
 
 
+    public void clickChangeConnection(){
+        $(btnChangeConnection).should(appear).click();
+    }
+
+    public void changeTravelType(String selectValue){
+        Select select = new Select($(selectAnsicht));
+        select.deselectByValue(selectValue); //Standard-Ansicht oder Barrierefreies Reisen
+    }
 
     public ArrayList<SBBConnection> getAllConnections(){
         ArrayList<SBBConnection> connections = new ArrayList<SBBConnection>();
@@ -51,9 +60,10 @@ public class ConnectionPage {
             String dauer = connection.findElement(By.cssSelector(".mod_timetable_duration > span")).getText();
             String umsteigen = connection.findElement(By.className("mod_timetable_change_label")).getText();
             SelenideElement btnBuyTicket = connection.find(By.className("mod_timetable_buy_button_label"));
+            SelenideElement btnSeeMore = connection.find(By.className("mod_accordion_item_link_open"));
             String preisWithoutChar = btnBuyTicket.getText().replaceAll("[^\\d.]", "");
             double preis = Double.parseDouble(preisWithoutChar.substring(0, preisWithoutChar.length() - 2));
-            SBBConnection ConnObj = new SBBConnection(richtung, start, end, dauer, umsteigen, preis, btnBuyTicket);
+            SBBConnection ConnObj = new SBBConnection(richtung, start, end, dauer, umsteigen, preis, btnBuyTicket, btnSeeMore);
             connections.add(ConnObj);
         }
         return connections;
@@ -99,6 +109,7 @@ public class ConnectionPage {
         private final String umsteigen;
         private final double ticketPreis;
         private final SelenideElement btnBuyTicket;
+        private final SelenideElement btnSeeMore;
 
         public String getRichtung() {
             return richtung;
@@ -129,7 +140,7 @@ public class ConnectionPage {
         }
 
         public SBBConnection(String richtung, String start, String end, String dauer, String umsteigen, double ticketPreis,
-                             SelenideElement btnBuyTicket) {
+                             SelenideElement btnBuyTicket, SelenideElement btnSeeMore) {
             super();
             this.richtung = richtung;
             this.start = start;
@@ -138,6 +149,7 @@ public class ConnectionPage {
             this.umsteigen = umsteigen;
             this.ticketPreis = ticketPreis;
             this.btnBuyTicket = btnBuyTicket;
+            this.btnSeeMore = btnSeeMore;
         }
     }
 }

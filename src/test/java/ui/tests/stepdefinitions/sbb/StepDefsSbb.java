@@ -4,9 +4,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.tinylog.Logger;
 import ui.pageobjects.constants;
 import ui.pageobjects.sbb.ConnectionPage;
 import ui.pageobjects.sbb.HomePage;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static ui.pageobjects.constants.URL_SBB;
@@ -27,7 +30,9 @@ public class StepDefsSbb {
     }
     @Then("user gets connections")
     public void user_gets_connections(){
-        System.out.println("hi");
+        ArrayList<ConnectionPage.SBBConnection> Collection = connPage.getAllConnections();
+        Logger.info("There were found {} Connections ", Collection.size());
+        assertTrue(Collection.size() > 0);
     }
     @And("user sets to {string}")
     public void user_sets_to_something(String to){

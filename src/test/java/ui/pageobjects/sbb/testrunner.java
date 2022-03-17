@@ -42,6 +42,15 @@ public class testrunner {
 
         Logger.info(ConnPage.getAllConnections());
         ConnPage.addTicketToCart();
-        Thread.sleep(20000);
+
+        OnboardingPage onboardingPage = new OnboardingPage();
+        onboardingPage.loginAsGuest();
+
+        OfferPage OfferPage = new OfferPage();
+        OfferPage.setPassengerInfos("Yanik", "Emmenegger", "26.08.1999", false, false, false, false);
+        OfferPage.setPassengerInfos("Yanik", "Emmenegger", "26.08.1999", false, false, false, false);
+
+        Thread.sleep(10000);
+
     }
 }
